@@ -29,7 +29,7 @@ function ApiPage() {
             .then((response) => setApiTwoResult(response.data))
             .catch((error) => {
                 console.error("Error fetching data:", error);
-                setApiOneResult("Error fetching data");
+                setApiTwoResult("Error fetching data");
             });
     }, [api_two_url]);
 
