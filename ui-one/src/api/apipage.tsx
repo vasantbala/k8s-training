@@ -2,14 +2,8 @@ import React from "react";
 import axios from "axios";
 
 function ApiPage() {
-    const api_one_url = process.env.REACT_APP_API_ONE_URL;
-    const api_two_url = process.env.REACT_APP_API_TWO_URL;
-    if (!api_one_url) {
-        return <h1>Error: API ONE URL is not defined</h1>;
-    }
-    if (!api_two_url) {
-        return <h1>Error: API TWO URL is not defined</h1>;
-    }
+    const api_one_url = process.env.REACT_APP_API_ONE_URL || "";
+    const api_two_url = process.env.REACT_APP_API_TWO_URL || "";
 
     const [api_one_result, setApiOneResult] = React.useState<string | null>(null);
 
