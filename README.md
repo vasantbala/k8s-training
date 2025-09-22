@@ -86,11 +86,14 @@ kubectl get services
 #### Method 1: Port Forwarding (Recommended)
 ```bash
 # Forward port 8080 from service to localhost
-kubectl port-forward service/api-one-service 8080:8080
+kubectl port-forward svc/api-two-service 8081:8080 & kubectl port-forward svc/api-one-service 8080:8080
 
 # Test the application (in another terminal)
 curl http://localhost:8080
 # Should return: "This is API 1!"
+
+curl http://localhost:8081
+# Should return: "This is API 2!"
 ```
 
 #### Method 2: NodePort (Alternative)

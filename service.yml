@@ -12,3 +12,18 @@ spec:
     nodePort: 30080
   selector:
     app: training-app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-two-service
+  labels:
+    app: api-two
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30081
+  selector:
+    app: api-two

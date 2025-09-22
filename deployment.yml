@@ -1,22 +1,45 @@
-    apiVersion: apps/v1
-    kind: Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-training-deployment
+  labels:
+    app: training-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: training-app
+  template:
     metadata:
-      name: k8s-training-deployment
       labels:
         app: training-app
     spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          app: training-app
-      template:
-        metadata:
-          labels:
-            app: training-app
-        spec:
-          containers:
-          - name: api-one-container
-            image: localhost/api-one:latest
-            imagePullPolicy: Never # Or IfNotPresent
-            ports:
-            - containerPort: 8080 # Adjust to your application's port
+      containers:
+      - name: api-one-container
+        image: localhost/api-one:latest
+        imagePullPolicy: Never # Or IfNotPresent
+        ports:
+        - containerPort: 8080 # Adjust to your application's port
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-two-deployment
+  labels:
+    app: api-two
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-two
+  template:
+    metadata:
+      labels:
+        app: api-two
+    spec:
+      containers:
+      - name: api-two-container
+        image: localhost/api-two:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
